@@ -7,6 +7,43 @@
     
 </head>
 <body>
-    
+    <h2> Fleet Management -Admin</h2>
+    <select id="filterCategory" onchange="applyFilters()">
+        <option value="Auto">Auto</option>
+        <option value="Car">Car</option>
+        <option value="Truck">Truck</option>
+        <option value="Bus">Bus</option>
+    </select>
+    <select id="filterAvailability" onchange="applyFilters()">
+        <option value="All"> All Availability</option>
+        <option value="Available">Available</option>
+         <option value="Unavailable">Unavailable</option>
+    </select>
+    <button onclick="clearFilters()">clearFilters</button>
+    <hr>
+    <h3>Add Fleet</h3>
+    <input id="regNo" type="text" placeholder="Reg Number"></br>
+    <select id="category">
+        <option value="">Select Category </option>
+        <option value="Auto">Auto</option>
+        <option value="Car">Car</option>
+        <option value="Truck">Truck</option>
+        <option value="Bus">Bus</option>
+    </select></body>br>
+    <input id="driver" type="text" placeholder="Driver Name"></br>
+
+    <select id="availability" >
+        <option value="Available">Available</option>
+         <option value="Unavailable">Unavailable</option>
+    </select><br>
+    <button onclick="addFleet()">Add Fleet</button>
+
+    <h3>Fleet List</h3>
+    <div id ="fleetContainer"></div>
+    <script>
+        let fleets =[];
+        const IMG=""
+    </script>
+
 </body>
 </html>
