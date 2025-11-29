@@ -42,7 +42,21 @@
     <div id ="fleetContainer"></div>
     <script>
         let fleets =[];
-        const IMG=""
+        const IMG="";
+        function addFleet(){
+            let regNo= regNoInput().value.trim();
+            let cat=categoryInput().value;
+            let drv=driverInput().value.trim();
+            let avail= availabilityInput().value;
+            if(!regNo||!cat||!drv){
+                alert("Please fill all fields");
+                return;
+            }
+            fleets.push({regNo,category:cat,driver:drv,availability:avail,imageUrl:Img});
+            clearForm();
+            renderFleets(fleets);
+        }
+        
     </script>
 
 </body>
