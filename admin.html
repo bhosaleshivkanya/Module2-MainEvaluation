@@ -56,7 +56,99 @@
             clearForm();
             renderFleets(fleets);
         }
+        function renderFleets(list){
+            const box = document.getElementById("fleetContainer");
+            box.innerHTML="";
+            list.forEach((v, i)=>{
+                let card = document.createElement("div");
+                card.className="card";
+                let img =document.createElement("img");
+                img.src=v.imageUrl;
+                let r=createP("Reg No:"+v.regNo);
+                let c=createP("Category:"+v.category);
+                let d=createP("Driver:"+v.driver);
+                let a =createP("Availability:"+ v.availability);
+                let btn1=createBtn("update Driver",()=>changeAvailability(i));
+                let btn2=createBtn("change Availability",()=>changeAvailability(i));
+                let btn3=createBtn("Delete",()=>deleteFleet(i));
+                card.append(img,r,c,d,a,btn,btn2,btn3);
+                box.appendChild(card);
+            });
+        }
         
+    function updateDriver(i) {
+        let name = prompt("Enter new driver name");
+        if (name === null) return;
+        name = name.trim();
+        if (!name) {
+            alert("Driver name cannot be empty");
+            return;
+        }
+        fleets[i].driver = name;
+        renderFleets(applyFiltersReturn());
+    }
+
+    
+    function changeAvailability(i) {
+        fleets[i].availability =
+            fleets[i].availability === "Available" ? "Unavailable" : "Available";
+        renderFleets(applyFiltersReturn());
+    }
+
+   
+    function deleteFleet(i) {
+        if (confirm("Are you sure?")) {
+            fleets.splice(i, 1);
+            renderFleets(applyFiltersReturn());
+        }
+    }
+
+   
+    function applyFilters() {
+        renderFleets(applyFiltersReturn());
+    }
+
+    function applyFiltersReturn() {
+        let cat = filterCategory().value;
+        let av = filterAvailability().value;
+
+        return fleets.filter(v => {
+            let ok = true;
+            if (cat !== "All") ok = ok && v.category === cat;
+            if (av !== "All") ok = ok && v.availability === av;
+            return ok;
+        });
+    }
+
+    function clearFilters() {
+        filterCategory().value = "All";
+        filterAvailability().value = "All";
+        renderFleets(fleets);
+    }
+
+    
+    function regNoInput() { return document.getElementById("regNo"); }
+    function categoryInput() { return document.getElementById("category"); }
+    function driverInput() { return document.getElementById("driver"); }
+    function availabilityInput() { return document.getElementById("availability"); }
+
+    function filterCategory() { return document.getElementById("filterCategory"); }
+    function filterAvailability() { return document.getElementById("filterAvailability"); }
+
+    
+
+    function createP(text) {
+        let p = document.createElement("p");
+        p.textContent = text;
+        return p;
+    }
+
+    function createBtn(text, fn) {
+        let b = document.createElement("button");
+        b.textContent = text;
+        b.onclick = fn;
+        return b;
+    }
     </script>
 
 </body>
