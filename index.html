@@ -4,14 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    {}
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 60px;}
+            input{
+                padding: 8px ;
+                margin: 5px;
+                width: 220px;
+            }
+            button{
+                padding: 8px 15px;
+            }
+    </style>
+    
 </head>
 <body>
     <h2>Fleet Management Login</h2>
     <input id ="email" type="email" placeholder="Email"><br>
     <input id ="password" type="password" placeholder="Password">
     <button onclick="login()">Login</button>
-    
+    <script>
+        function login(){
+            let email=document.getElementById("password").value.trim();   
+            let pass=document.getElementById("password").value.trim();
+        if (email=="admin@gmail.com"&& pass=="admin1234")
+        {
+            alert("Login Success");
+            window.location.href="admin.html";}
+            else{
+                alert("Wrong email or password");
+            }
+            
+        }
+        
+    </script>
+
 
 </body>
 </html>
